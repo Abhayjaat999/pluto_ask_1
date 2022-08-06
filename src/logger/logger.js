@@ -11,8 +11,7 @@ let onTime= function(){
     let date = date_ob.getDate();
     let month = date_ob.getMonth() + 1;
     let year = date_ob.getFullYear();
-    
-    // prints date & time in YYYY-MM-DD format
+
     console.log(date + "-" + month + "-" + year); 
 
 }
