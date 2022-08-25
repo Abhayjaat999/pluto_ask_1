@@ -9,7 +9,7 @@ router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
 
-
+router.post("/user",commonMW.mid5,UserController.createUser)
 
 
 router.post("/createBook", BookController.createBook  )
