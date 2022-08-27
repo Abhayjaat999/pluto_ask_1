@@ -15,7 +15,37 @@ const basicCode= async function(req, res) {
     
     }
 
+<<<<<<< HEAD
 const createUser1= async function (req, res) {
+=======
+const commonHandler = async function(req, res, next) {
+    console.log('I am inside the common route handler')
+    next()
+    //res.send({status: true, msg: "Hi there!"})
+}
+
+module.exports.commonHandler = commonHandler
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const createUser= async function (req, res) {
+>>>>>>> 9e4c16d4ea1ae2e8bdde64eac93caf8467fd54bc
     let data= req.body
     let savedData= await UserModel.create(data)
     res.send({msg: savedData})
