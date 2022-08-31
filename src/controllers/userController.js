@@ -34,17 +34,6 @@ const loginUser = async function (req, res) {
 //=============== 3 ===============================
 
 const getUserData = async function (req, res) {
-  let token = req.headers["x-auth-token"];
-  if (!token) token = req.headers["x-Auth-token"];
-
-  if (!token) return res.send({ status: false, msg: "token must be present" });
-
-  console.log(token);
-
-  let decodedToken = jwt.verify(token, "function-plutonium-very-secret-key");
-  if (!decodedToken){
-    return res.send({ status: false, msg: "token is invalid" });
-}
   let userId = req.params.userId;
   let userDetails = await userModel.findById(userId);
   if (!userDetails){
@@ -73,16 +62,7 @@ const updateUser = async function (req, res) {
 
 const postMessage = async function (req, res) {
     let message = req.body.message
-
-    let token = req.headers["x-auth-token"]
-    if(!token) return res.send({status: false, msg: "token must be present in the request header"})
-    let decodedToken = jwt.verify(token, "function-plutonium-very-secret-key")
-
-    if(!decodedToken) return res.send({status: false, msg:"token is not valid"})
-        let userToBeModified = req.params.userId
-    let userLoggedIn = decodedToken.userId
-    if(userToBeModified != userLoggedIn) return res.send({status: false, msg: 'User logged is not allowed to modify the requested users data'})
-
+ 
     let user = await userModel.findById(req.params.userId)
     if(!user) return res.send({status: false, msg: 'No such user exists'})
     
